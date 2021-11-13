@@ -2,16 +2,12 @@
 
 const express = require('express')
 const app = express()
-const port = 3000
 
 const basePath = '/api/v1'
 
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
+// APPLICATION ROUTES
+const health = require('./routes/health');
+app.use('/health', health);
 
-app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`)
-})
+module.exports = app;
 
-app.use(basePath)
