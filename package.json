@@ -1,0 +1,29 @@
+{
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "name": "candlessticks",
+  "description": "Automated stock buyer searching for the selected pattern using Robinhood.",
+  "version": "1.0.0",
+  "main": "app.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abraham-sanchez-1/CandlesSticks.git"
+  },
+  "keywords": [
+    "robinhood",
+    "candlestick",
+    "pattern",
+    "stocks"
+  ],
+  "author": "Abraham Sanchez",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/abraham-sanchez-1/CandlesSticks/issues"
+  },
+  "homepage": "https://github.com/abraham-sanchez-1/CandlesSticks#readme"
+}
