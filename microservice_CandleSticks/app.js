@@ -9,5 +9,8 @@ const basePath = '/api/v1'
 const health = require('./routes/health');
 app.use('/health', health);
 
+const perMinuteStockData = require('./routes/perMinuteStockData');
+app.use('/stockData', perMinuteStockData);
+
 module.exports = app;
 
