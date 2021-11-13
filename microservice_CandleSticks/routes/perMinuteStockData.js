@@ -6,7 +6,7 @@ const {getStockData} = require('../utils/helperFunctions.js');
 
 router.get('/', (req,res) => {
   console.dir(req, {depth:null});
-  const stockTicker = req.body.stockTicker;
+  const stockTicker = req.body.ticker;
   //logic to figure out time,. NOTE: Alpaca uses ISOstring
   const oneMinute = 60000;
   const systemTime = new Date()

@@ -2,11 +2,14 @@
 
 const express = require('express')
 const app = express()
+const bodyParser = require('body-parser');
 
 const basePath = '/api/v1'
 
-// Sanitization
+// Configurations of server
+app.use(express.json())
 app.use(require('sanitize').middleware)
+
 
 // APPLICATION ROUTES
 const health = require('./routes/health');

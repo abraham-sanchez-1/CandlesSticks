@@ -4,9 +4,11 @@ const fetch = require('node-fetch');
 
 const getStockData = async (ticker, start, end) => {
   const endpoint = config.alpacaEnpoint;
+  const finalEndpoint = `${endpoint}/v1/bars/minute?symbols=${ticker}&start=${start}&end=${end}`
+  let response
   try {
     response = await fetch(
-      `${endpoint}/v1/bars/minute?symbol=${ticker}&start${start}&end${end}`,
+      finalEndpoint,
       {
         headers: {
           'APCA-API-KEY-ID': process.env.ALPACAID,
@@ -14,10 +16,21 @@ const getStockData = async (ticker, start, end) => {
         },
       }
     );
+    console.log("return from fetch")
+    console.log(response)
+    return {
+      status: 0,
+      response
+    };
   } catch (error) {
     console.log(error);
-    return error.json();
+    return {
+      status: 1,
+      error
+    };
   }
 };
 
-module.exports = getStockData;
+module.exports = {
+  getStockData
+};
