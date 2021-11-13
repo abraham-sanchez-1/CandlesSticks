@@ -5,12 +5,15 @@ const app = express()
 
 const basePath = '/api/v1'
 
+// Sanitization
+app.use(require('sanitize').middleware)
+
 // APPLICATION ROUTES
 const health = require('./routes/health');
-app.use('/health', health);
+app.use(basePath + '/health', health);
 
 const perMinuteStockData = require('./routes/perMinuteStockData');
-app.use('/stockData', perMinuteStockData);
+app.use(basePath + '/stockdata', perMinuteStockData);
 
 module.exports = app;
 

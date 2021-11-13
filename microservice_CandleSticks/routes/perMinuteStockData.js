@@ -1,31 +1,20 @@
 'use strict';
 
 const express = require('express');
-const os = require('os');
 const router = express.Router();
-const fetch = require('node-fetch');
-const config = require('config');
+const {getStockData} = require('../utils/helperFunctions.js');
 
 router.get('/', (req,res) => {
+  console.dir(req, {depth:null});
   const stockTicker = req.body.stockTicker;
   //logic to figure out time,. NOTE: Alpaca uses ISOstring
   const oneMinute = 60000;
   const systemTime = new Date()
   const twoMinutesBefore = new Date(systemTime - (2 * oneMinute)).toISOString();
   const oneMinuteBefore = new Date(systemTime - oneMinute).toISOString();
-  const endpoint = config.alpacaEnpoint;
-  let response
-  try {
-      response = await fetch(`${endpoint}/v1/bars/minute?symbol=${stockTicker}&start${twoMinutesBefore}&end${oneMinuteBefore}`, {
-      headers: {
-        'APCA-API-KEY-ID': process.env.ALPACAID,
-        'APCA-API-SECRET-KEY': process.env.ALPACAAPIKEY
-      }
-    })
-  } catch (error) {
-    console.log(error)
-    return res.status(500).json(error)
-  }
+  
+  let response = getStockData(stockTicker, twoMinutesBefore, oneMinuteBefore)
+  
   if(response){
     return res.status(200).json(response)
   }else{
