@@ -1,0 +1,39 @@
+{
+  "name": "candlessticks",
+  "description": "Automated stock buyer searching for the selected pattern using Robinhood.",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "test": "test",
+    "start-dev": "cross-env NODE_ENV=development nodemon microservice_CandleSticks/index.js",
+    "start": "cross-env nodemon microservice_CandleSticks/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abraham-sanchez-1/CandlesSticks.git"
+  },
+  "keywords": [
+    "robinhood",
+    "candlestick",
+    "pattern",
+    "stocks"
+  ],
+  "author": "Abraham Sanchez",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/abraham-sanchez-1/CandlesSticks/issues"
+  },
+  "homepage": "https://github.com/abraham-sanchez-1/CandlesSticks#readme",
+  "dependencies": {
+    "axios": "^0.24.0",
+    "body-parser": "^1.19.0",
+    "config": "^3.3.6",
+    "cross-env": "^7.0.3",
+    "dotenv": "^14.2.0",
+    "express": "^4.17.1",
+    "http": "^0.0.1-security",
+    "nodemon": "^2.0.15",
+    "os": "^0.1.2",
+    "sanitize": "^2.1.0"
+  }
+}
