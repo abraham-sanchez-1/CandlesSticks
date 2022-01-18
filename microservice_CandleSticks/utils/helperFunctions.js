@@ -5,16 +5,21 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 const endpoint = config.alpacaEnpoint;
+const stockDataEndpoint = config.dataAlpacaEndpoint;
 const paperId = process.env.PAPERAPIKEYID;
 const paperKey = process.env.PAPERSECRETKEY;
+const stageId = process.env.ALPACAID;
+const stageKey = process.env.ALPACAAPIKEY;
 
 const getStockData = async (ticker, start, end) => {
-  const finalEndpoint = `${endpoint}/v1/bars/minute?symbols=${ticker}&start=${start}&end=${end}`
+  // /v2/stocks/{symbol}/bars
+  const finalEndpoint = `${stockDataEndpoint}/stocks/${ticker}/bars?start=${start}&end=${end}&timeframe=1Min`
+  //const finalEndpoint = `${endpoint}/v2/stocks/minute?symbols=${ticker}&start=${start}&end=${end}`
   return axios
   .get(finalEndpoint, {
     headers: {
-      'APCA-API-KEY-ID': paperId,
-      'APCA-API-SECRET-KEY': paperKey,
+      'APCA-API-KEY-ID': stageId,
+      'APCA-API-SECRET-KEY': stageKey,
     }, 
     timeout: 5000
   })
@@ -22,7 +27,7 @@ const getStockData = async (ticker, start, end) => {
     return response.data;
   })
   .catch(error => {
-    return error;
+    return error.message;
   })
 };
 
@@ -42,8 +47,6 @@ const getAccountData = async () => {
     return error;
   })
 };
-
-
 
 module.exports = {
   getStockData, 
