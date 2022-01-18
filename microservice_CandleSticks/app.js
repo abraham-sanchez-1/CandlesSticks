@@ -15,8 +15,12 @@ app.use(require('sanitize').middleware)
 const health = require('./routes/health');
 app.use(basePath + '/health', health);
 
+const accountData = require('./routes/accountData')
 const perMinuteStockData = require('./routes/perMinuteStockData');
+
+app.use(basePath + '/accountdata', accountData)
 app.use(basePath + '/stockdata', perMinuteStockData);
+
 
 module.exports = app;
 

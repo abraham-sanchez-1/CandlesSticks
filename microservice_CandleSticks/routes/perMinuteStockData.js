@@ -12,16 +12,19 @@ router.get('/', (req,res) => {
   const systemTime = new Date()
   const twoMinutesBefore = new Date(systemTime - (2 * oneMinute)).toISOString();
   const oneMinuteBefore = new Date(systemTime - oneMinute).toISOString();
-  
-  let response = getStockData(stockTicker, twoMinutesBefore, oneMinuteBefore)
-  
-  if(response){
-    return res.status(200).json(response)
-  }else{
-    return res.status(400).json({
-      message: 'Successfully sent request to Alpaca but returned no data'
-    })
-  } 
+  getStockData(stockTicker, twoMinutesBefore, oneMinuteBefore).then(response => {
+    res.status(200).json(response);
+  })
+  .catch(error => {
+    res.status(400).json(error)
+  })
+  // let response = getStockData(stockTicker, twoMinutesBefore, oneMinuteBefore)
+  // getAccountData().then(response => {
+  //   res.status(200).json(response)
+  // })
+  // .catch(error => {
+  //   res.status(400).json(error)
+  // })
 });
 
 module.exports = router;

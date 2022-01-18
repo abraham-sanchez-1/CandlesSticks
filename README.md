@@ -1,2 +1,2 @@
 # CandlesSticks
-Automated stock buyer searching for the selected pattern using Robinhood.
+Automated stock buyer searching for the selected pattern using Alpaca.
