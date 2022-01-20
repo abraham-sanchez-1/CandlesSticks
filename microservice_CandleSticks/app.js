@@ -13,13 +13,14 @@ app.use(require('sanitize').middleware)
 
 // APPLICATION ROUTES
 const health = require('./routes/health');
-app.use(basePath + '/health', health);
-
-const accountData = require('./routes/accountData')
+const accountData = require('./routes/accountData');
 const perMinuteStockData = require('./routes/perMinuteStockData');
+const placeOrder = require('./routes/placeOrder');
 
-app.use(basePath + '/accountdata', accountData)
+app.use(basePath + '/health', health);
+app.use(basePath + '/accountdata', accountData);
 app.use(basePath + '/stockdata', perMinuteStockData);
+app.use(basePath + '/placeorder', placeOrder);
 
 
 module.exports = app;

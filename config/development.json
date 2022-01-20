@@ -1,4 +1,4 @@
 {
-  "alpacaEnpoint": "https://paper-api.alpaca.markets",
+  "alpacaEnpoint": "https://paper-api.alpaca.markets/v2",
   "dataAlpacaEndpoint": "https://data.alpaca.markets/v2"
 }

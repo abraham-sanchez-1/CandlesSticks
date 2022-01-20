@@ -31,8 +31,34 @@ const getStockData = async (ticker, start, end) => {
   })
 };
 
+const placeOrder = async (ticker, quantity, side, type, timeInForce ) => {
+  const requestBody = {
+    "symbol": ticker,
+    "qty": quantity,
+    "side": side,
+    "type": type,
+    "timeInForce": timeInForce
+  }
+  // /v2/stocks/{symbol}/bars
+  const finalEndpoint = `${endpoint}/stocks/orders`
+  return axios
+  .get(finalEndpoint, requestBody, {
+    headers: {
+      'APCA-API-KEY-ID': paperId,
+      'APCA-API-SECRET-KEY': paperKey,
+    }, 
+    timeout: 5000
+  })
+  .then(response => {
+    return response.data;
+  })
+  .catch(error => {
+    return error.message;
+  })
+};
+
 const getAccountData = async () => {
-  const finalEndpoint = `${endpoint}/v2/account`
+  const finalEndpoint = `${endpoint}/account`
   return axios.get(finalEndpoint, {
     headers: {
       'APCA-API-KEY-ID': paperId,
@@ -50,5 +76,6 @@ const getAccountData = async () => {
 
 module.exports = {
   getStockData, 
-  getAccountData
+  getAccountData,
+  placeOrder
 };
