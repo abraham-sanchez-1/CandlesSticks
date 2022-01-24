@@ -2,7 +2,6 @@
 
 const express = require('express')
 const app = express()
-const bodyParser = require('body-parser');
 
 const basePath = '/api/v1'
 
